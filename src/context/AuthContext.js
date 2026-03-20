@@ -6,16 +6,14 @@ export const AuthProvider = ({ children }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = () => {
-    setIsLoggedIn(true);
-  };
-
-  const logout = () => {
-    setIsLoggedIn(false);
-  };
-
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider 
+      value={{ 
+        isLoggedIn, 
+        login: () => setIsLoggedIn(true), 
+        logout: () => setIsLoggedIn(false),
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
